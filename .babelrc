@@ -1,0 +1,61 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-env": {
+          "useBuiltIns": "usage"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src", "./"],
+        "alias": {
+          "common": "./src/common",
+          "integration": "./src/integration",
+          "layout": "./src/layout",
+          "page-components": "./src/page-components",
+          "server": "./server",
+          "shared-components": "./src/shared-components",
+          "store": "./src/store",
+          "styling": "./src/styling",
+          "utilities": "./src/utilities"
+        }
+      }
+    ],
+    ["@babel/plugin-proposal-optional-chaining"]
+  ],
+  "env": {
+    "test": {
+      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]]
+    },
+    "dev": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "ssr": true,
+            "displayName": true
+          }
+        ]
+      ]
+    },
+    "prod": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "ssr": true,
+            "displayName": false,
+            "fileName": false,
+            "preprocess": true
+          }
+        ]
+      ]
+    }
+  }
+}
